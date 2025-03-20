@@ -3,6 +3,7 @@
 
 namespace Controllers;
 
+use Model\Usuario;
 use MVC\Router;
 
 class loginController{
@@ -21,9 +22,9 @@ public static function logout(){
     
     }
 
-    public static function olvide(){
+    public static function olvide(Router $router){
 
-        echo "saliendo olvide";
+        $router->render("auth/olvide-password");
         
         }
 
@@ -33,10 +34,23 @@ public static function logout(){
             
             }
 
-            public static function crear(){
+            public static function crear(Router $router){
+                $usuario = new Usuario($_POST);
 
-                echo "crear cuenta";
-                
+                $alertas = [];
+
+                if($_SERVER['REQUEST_METHOD'] === 'POST'){
+                   
+                  $usuario->sincronizar($_POST);
+                  $alertas = $usuario->validarNuevaCuenta();
+                  
+                      
+                }
+                $router->render('auth/crear-cuenta',[
+                    'usuario' => $usuario,
+                    'alertas' => $alertas
+                ]);
+                    
                 }
 
 }
