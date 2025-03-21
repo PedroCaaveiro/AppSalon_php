@@ -5,6 +5,8 @@ namespace Controllers;
 
 use Model\Usuario;
 use MVC\Router;
+use Classes\Email;
+
 
 class loginController{
 
@@ -42,8 +44,30 @@ public static function logout(){
                 if($_SERVER['REQUEST_METHOD'] === 'POST'){
                    
                   $usuario->sincronizar($_POST);
+                  
                   $alertas = $usuario->validarNuevaCuenta();
                   
+                  // revisar alertas este vacio
+
+                  if (empty($alertas)) {
+                   $resultado = $usuario->existeUsuario();
+
+                   if ($resultado->num_rows) {
+                    $alertas = Usuario::getAlertas();
+                   }else{
+                    // hashear password
+                    $usuario->hashPassword();
+                    
+                    // crear token unico
+
+                    $usuario->crearToken();
+
+                    // enviar un email
+
+                    $email = new Email($usuario->nombre,$usuario->email,$usuario->token);
+                    
+                   }
+                  }
                       
                 }
                 $router->render('auth/crear-cuenta',[

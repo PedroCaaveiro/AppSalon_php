@@ -31,12 +31,12 @@ include_once __DIR__. "/../templates/alertas.php";
 
     <div class="campo">
         <label for="nombre">Email</label>
-        <input type="email" id="Email" name="Email" placeholder="Tu E-mail" value="<?php echo s($usuario->email);?>">
+        <input type="email" id="Email" name="email" placeholder="Tu E-mail" value="<?php echo s($usuario->email);?>">
     </div>
 
     <div class="campo">
         <label for="nombre">Password</label>
-        <input type="password" id="Password" name="Password" placeholder="Tu Password">
+        <input type="password" id="Password" name="password" placeholder="Tu Password">
     </div>
 
         <input type="submit" value="Crear Cuenta" class="boton">
