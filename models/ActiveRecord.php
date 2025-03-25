@@ -6,6 +6,7 @@ class ActiveRecord {
     protected static $db;
     protected static $tabla = '';
     protected static $columnasDB = [];
+    protected  $id;
 
     // Alertas y Mensajes
     protected static $alertas = [];
@@ -56,7 +57,7 @@ class ActiveRecord {
                 $objeto->$key = $value;
             }
         }
-
+        
         return $objeto;
     }
 
@@ -74,11 +75,20 @@ class ActiveRecord {
     public function sanitizarAtributos() {
         $atributos = $this->atributos();
         $sanitizado = [];
-        foreach($atributos as $key => $value ) {
-            $sanitizado[$key] = self::$db->escape_string($value);
+    
+        foreach ($atributos as $key => $value) {
+            if ($value === null) {
+                $sanitizado[$key] = 'NULL'; // Mantener el valor null sin modificar
+            } else {
+                $sanitizado[$key] = self::$db->escape_string($value);
+            }
         }
+    
         return $sanitizado;
     }
+    
+    
+    
 
     // Sincroniza BD con Objetos en memoria
     public function sincronizar($args=[]) { 
@@ -116,6 +126,20 @@ class ActiveRecord {
         return array_shift( $resultado ) ;
     }
 
+
+
+public static function where($columna, $valor) {
+    $query = "SELECT * FROM " . static::$tabla . " WHERE $columna = '$valor' LIMIT 1";
+    $resultado = self::$db->query($query);
+
+    if ($resultado->num_rows) {
+        $datos = $resultado->fetch_assoc();
+        return new static($datos); // <-- Esto convierte el resultado en un objeto Usuario
+    }
+    
+    return null; // <-- Si no encuentra nada, devuelve null
+}
+
     // Obtener Registros con cierta cantidad
     public static function get($limite) {
         $query = "SELECT * FROM " . static::$tabla . " LIMIT {$limite}";
@@ -127,21 +151,38 @@ class ActiveRecord {
     public function crear() {
         // Sanitizar los datos
         $atributos = $this->sanitizarAtributos();
-
-        // Insertar en la base de datos
-        $query = " INSERT INTO " . static::$tabla . " ( ";
+    
+        // Construir los valores correctamente para la consulta SQL
+        $valores = array_map(function ($valor) {
+            if ($valor === null) {
+                return "NULL"; // NULL en SQL debe ir sin comillas
+            } else {
+                return "'" . self::$db->escape_string($valor) . "'";
+            }
+        }, array_values($atributos));
+    
+        // Construir e insertar en la base de datos
+        $query = "INSERT INTO " . static::$tabla . " (";
         $query .= join(', ', array_keys($atributos));
-        $query .= " ) VALUES (' "; 
-        $query .= join("', '", array_values($atributos));
-        $query .= " ') ";
-
-        // Resultado de la consulta
+        $query .= ") VALUES (";
+        $query .= join(", ", $valores);
+        $query .= ")";
+    
+        // Depuración: Mostrar la consulta SQL antes de ejecutarla
+        // echo $query;
+        // die();
+    
+        // Ejecutar la consulta
         $resultado = self::$db->query($query);
+        
         return [
-           'resultado' =>  $resultado,
+           'resultado' => $resultado,
            'id' => self::$db->insert_id
         ];
     }
+    
+    
+    
 
     // Actualizar el registro
     public function actualizar() {

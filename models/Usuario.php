@@ -27,8 +27,8 @@ class Usuario extends ActiveRecord
         $this->email = $args['email'] ?? '';
         $this->password = $args['password'] ?? '';
         $this->telefono = $args['telefono'] ?? '';
-        $this->admin = $args['nombre'] ?? null;
-        $this->confirmado = $args['confirmado'] ?? null;
+        $this->admin = $args['admin'] ?? '0';
+        $this->confirmado = $args['confirmado'] ?? '0';
         $this->token = $args['token'] ?? '';
     }
 
@@ -57,6 +57,8 @@ class Usuario extends ActiveRecord
         return self::$alertas;
     }
 
+
+
 public function existeUsuario(){
 
 $query = "SELECT * FROM ". self::$tabla. " WHERE email = '" . $this->email."' LIMIT 1";
@@ -79,5 +81,34 @@ public function crearToken(){
     $this->token = uniqid();
 }
 
+public function validarLogin(){
+
+    if (!$this->email) {
+        self::$alertas['error'][] = 'El E-mail es Obligatorio';
+    }
+    if (!$this->password) {
+        self::$alertas['error'][] = 'El Password es Obligatorio';
+    }
+    return self::$alertas;
+}
+public function validarEmail(){
+    if (!$this->email) {
+        self::$alertas['error'][] = 'El E-mail es Obligatorio';
+    }
+
+return self::$alertas;
+}
+
+public function comprobarPasswordANDVerificardo($password){
+
+    $resultado = password_verify($password,$this->password);
+    if (!$resultado || !$this->confirmado) {
+        self::$alertas['error'][] = 'El Password incorrecto o la cuenta no ha sido confirmada';
+        //echo 'El usuario no esta confirmado';
+    }else{
+        return true;
+        //echo 'el usuario esta confirmado';
+    }
+}
 
 }
