@@ -17,6 +17,12 @@ margin-top:5rem;
         border: none;
         padding:15px;
         border-radius: 25px;
+
+        &:disabled{
+            background-color:v.$blanco;
+            color:v.$negro;
+            cursor: not-allowed;
+        }
         
     }
 }

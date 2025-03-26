@@ -57,4 +57,42 @@ class Email
       // echo "no enviado";
     }
   }
+
+  public function enviaInstrucciones()
+  {
+    // objeto email 
+
+    // Looking to send emails in production? Check out our Email API/SMTP product!
+    $email = new PHPMailer();
+    $email->isSMTP();
+    $email->Host = 'sandbox.smtp.mailtrap.io';
+    $email->SMTPAuth = true;
+    $email->Port = 2525;
+    $email->Username = 'b45ca7be279d0f';
+    $email->Password = '315a187376ff35';
+
+
+
+    $email->setFrom('appsalon@appsalon.com');
+    $email->addAddress('appsalon@appsalon.com');
+    $email->Subject = 'Reestablece tu Password';
+
+    $email->isHTML(TRUE);
+    $email->CharSet = 'UTF-8';
+
+    $contenido = '<html>';
+    $contenido .= "<p><strong> Hola " . $this->nombre . "</strong> Has solicitado reestablecer tu password, sigue el siguiente enlace para recuperarlo. </p>";
+    $contenido .= "<p>Presiona aquí: <a href='http://localhost:3000/recuperar?token=" . $this->token . "'>Reestablecer Password</a></p>";
+    $contenido .= "<p> Si tu no solicitaste este cambio puedes ignonar este mensaje</p>";
+    $contenido .= "</html>";
+    $email->Body = $contenido;
+
+
+
+    if ($email->send()) {
+      // echo "enviado";
+    } else {
+      // echo "no enviado";
+    }
+  }
 }
