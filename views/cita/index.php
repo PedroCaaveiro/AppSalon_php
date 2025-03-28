@@ -26,7 +26,7 @@
 
         <div class="campo">
             <label for="fecha">fecha</label>
-            <input type="date" id="fecha">
+            <input type="date" id="fecha" min=''>
         </div>
         <div class="campo">
             <label for="hora">Hora</label>

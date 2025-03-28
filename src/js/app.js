@@ -2,14 +2,25 @@ let paso = 1;
 let pasoInicial = 1;
 let pasoFinal =3;
 
+const cita = {
+nombre:'',
+fecha:'',
+hora:'',
+servicios:[]
+
+}
+
 document.addEventListener('DOMContentLoaded', iniciarApp);
 
 function iniciarApp() {
     mostrarSeccion(); // Muestra la sección inicial
     tabs(); // Agrega eventos a los tabs
     botonesPagina();
-    consultarAPI();
-    
+    consultarAPI();//consulta api
+    nombreCliente();//añade nombre cliente a cita
+    seleccionarFecha()//añade la fecha cita 
+    limitarFecha();
+
     // Agrega los eventos a los botones
     document.getElementById('anterior').addEventListener('click', () => cambiarPaso('anterior'));
     document.getElementById('siguiente').addEventListener('click', () => cambiarPaso('siguiente'));
@@ -95,6 +106,10 @@ servicios.forEach(servicio => {
     const servicioDiv = document.createElement('DIV');
     servicioDiv.classList.add('servicio');
     servicioDiv.dataset.idServicio = id;
+    servicioDiv.onclick = function(){
+        seleccionarServicio(servicio);
+    }
+
     servicioDiv.appendChild(nombreServicio);
     servicioDiv.appendChild(precioServicio);
 
@@ -104,5 +119,93 @@ servicios.forEach(servicio => {
 
 });
 
+
+}
+function seleccionarServicio(servicio) {
+    const { id } = servicio;
+    const { servicios } = cita;
+
+    // Verifico si el servicio ya está en la cita
+    const existe = servicios.some(s => s.id === id);
+
+    if (existe) {
+        // Si ya está seleccionado, lo elimino
+        cita.servicios = servicios.filter(s => s.id !== id);
+    } else {
+        // Si no está seleccionado, lo agrego
+        cita.servicios = [...servicios, servicio];
+    }
+
+  
+    const divServicio = document.querySelector(`[data-id-servicio="${id}"]`);
+    
+    if (divServicio) {
+        divServicio.classList.toggle('seleccionado');  // Alterna la clase
+    }
+
+   // console.log(cita);
+}
+
+
+function nombreCliente(){
+cita.nombre = document.getElementById('nombre').value;
+
+}
+
+function seleccionarFecha() {
+    const inputFecha = document.getElementById('fecha');
+    inputFecha.addEventListener('input', function (e) {
+
+
+        if (!inputFecha) return;
+
+
+        const dia = new Date(e.target.value).getUTCDay();
+
+        if ([6, 0].includes(dia)) {
+            e.target.value = '';
+           mostrarAlerta('Fines de semana cerrado por Descanso del personal','error');
+
+
+        } else {
+            cita.fecha = e.target.value;
+        }
+
+        //console.log(dia);
+
+        //console.log('selecionaste una fecha');
+
+    });
+
+}
+
+function mostrarAlerta(mensaje,tipo){
+// evitar se generen mas de una alerta
+const alertaprevia = document.querySelector('.alertas');
+
+if (alertaprevia) return;
+
+
+const alerta = document.createElement('DIV');
+alerta.textContent = mensaje;
+alerta.classList.add('alertas');
+alerta.classList.add(tipo);
+const formulario = document.querySelector('#paso-2 p');
+formulario.appendChild(alerta);
+
+
+
+setTimeout(() =>{
+alerta.remove();
+
+},5000);
+
+}
+
+function limitarFecha(){
+
+const fecha = document.getElementById('fecha');
+const hoy = new Date().toISOString().split('T')[0];
+fecha.min = hoy;
 
 }
