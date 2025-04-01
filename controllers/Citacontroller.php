@@ -19,7 +19,8 @@ public static function index(Router $router){
    
 
     $router->render('cita/index',[
-        'nombre' => $_SESSION['nombre']
+        'nombre' => $_SESSION['nombre'],
+        'id' =>$_SESSION['id']
 
     ]);
 }
