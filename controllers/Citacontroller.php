@@ -15,8 +15,10 @@ class Citacontroller{
 public static function index(Router $router){
     if (session_status() === PHP_SESSION_NONE) {
         session_start();
+
+        
     }
-   
+    revisarUsuarioAutenticado();
 
     $router->render('cita/index',[
         'nombre' => $_SESSION['nombre'],

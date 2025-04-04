@@ -26,6 +26,24 @@
     }
 }
 
+.barra{
+    margin-bottom: 7rem;
+
+@include m.tablet{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+    .boton{
+        @include m.boton(v.$negro,v.$blanco);
+    }
+    .boton:hover{
+        @include m.boton(v.$azul,v.$blanco);
+    }
+}
+
+
 .nombre-pagina{
 text-align: center;
 margin: 5rem 0;
@@ -34,3 +52,4 @@ font-weight: bold;
 .descripcion-pagina{
     text-align: center;
 }
+
