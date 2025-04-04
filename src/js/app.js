@@ -3,7 +3,7 @@ let pasoInicial = 1;
 let pasoFinal = 3;
 
 const cita = {
-    id:'',
+    id: '',
     nombre: '',
     fecha: '',
     hora: '',
@@ -158,7 +158,7 @@ function seleccionarServicio(servicio) {
     // console.log(cita);
 }
 
-function idCLiente(){
+function idCLiente() {
 
     cita.id = document.querySelector('#id').value;
 
@@ -277,7 +277,7 @@ function mostrarResumen() {
 
     const { nombre, fecha, hora, servicios } = cita;
 
-   
+
     const headingServicios = document.createElement('H3');
     headingServicios.textContent = 'Resumen de Servicios';
     resumen.appendChild(headingServicios);
@@ -298,7 +298,7 @@ function mostrarResumen() {
         resumen.appendChild(contenedorServicio);
     })
 
-    
+
     const headingCita = document.createElement('H3');
     headingCita.textContent = 'Resumen de Cita';
     resumen.appendChild(headingCita);
@@ -312,10 +312,10 @@ function mostrarResumen() {
     const dia = fechaObjeto.getDate();
     const year = fechaObjeto.getFullYear();
 
-    
-    const fechaUTC = new Date(Date.UTC(year,mes,dia));
-    const diaLargo = {weekday:'long',year:'numeric',month:'long',day:'numeric'};
-    const fechaFormateada = fechaUTC.toLocaleDateString('es-ES',diaLargo);
+
+    const fechaUTC = new Date(Date.UTC(year, mes, dia));
+    const diaLargo = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+    const fechaFormateada = fechaUTC.toLocaleDateString('es-ES', diaLargo);
 
     const fechaCita = document.createElement('P');
     fechaCita.innerHTML = `<span>Fecha:</span> ${fechaFormateada}.`;
@@ -339,28 +339,66 @@ function mostrarResumen() {
 
 async function reservaCita() {
 
-    const {nombre,fecha,hora,servicios,id}=cita;
+    const { nombre, fecha, hora, servicios, id } = cita;
 
     const idServicios = servicios.map(servicio => servicio.id);
-    
-   
+
+
     const datos = new FormData();
-    datos.append('usuarioID',id);
-    datos.append('fecha',fecha);
-    datos.append('nombre',hora);
-    datos.append('servicio',idServicios);
-
-    const url= 'http://127.0.0.1:3000/api/citas';
-
-    const respuesta = await fetch (url,{
-        method:'POST',
-        body:datos
+    datos.append('usuarioID', id);
+    datos.append('fecha', fecha);
+    datos.append('hora', hora);
+    idServicios.forEach(idServicio => {
+        datos.append('servicios[]', idServicio);  // Envia cada servicio como un parámetro por separado
     });
 
- const resultado = await respuesta.json();
 
-   // console.log([...datos]);
-   
-    
+    try {
+
+        const url = 'http://127.0.0.1:3000/api/citas';
+
+        const respuesta = await fetch(url, {
+            method: 'POST',
+            body: datos
+        });
+        //console.log('estado de la respuesta:', respuesta.status);
+
+        if (!respuesta.ok) {
+            throw new Error(`Error en la solicitud: ${respuesta.statusText}`);
+        }
+
+        const resultado = await respuesta.json();
+
+
+
+        if (resultado.resultado) {
+
+
+            Swal.fire({
+                icon: "success",
+                title: "Cita Creada",
+                text: "Tu cita fue creada correctamente",
+                button: 'OK'
+
+            }).then(() => {
+                setTimeout(() => {
+                    window.location.reload();
+                }, 2000);
+            });
+        }
+    } catch (error) {
+        Swal.fire({
+            icon: "error",
+            title: "Error",
+            text: "Hubo un error al guardar la cita!",
+
+        });
+
+        //  console.error('error en reservaCita:', error);
+
+    }
+
+
+
     //console.log('Reservando cita...')
 }

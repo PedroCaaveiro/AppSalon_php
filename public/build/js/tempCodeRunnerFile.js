@@ -1,0 +1,1 @@
+if(!respuesta.ok)throw new Error("Error en la respuesta del servidor");
