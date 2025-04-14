@@ -15,6 +15,9 @@ public static function index(Router $router){
         session_start();
     }
 
+$fecha = date('Y-m-d');
+
+
 // consulta bbdd
 
 $sql = "SELECT citas.id, citas.hora, CONCAT(usuarios.nombre, ' ', usuarios.apellido) AS 'cliente', 
@@ -22,7 +25,8 @@ $sql = "SELECT citas.id, citas.hora, CONCAT(usuarios.nombre, ' ', usuarios.apell
         FROM citas
         LEFT OUTER JOIN usuarios ON citas.usuarioID = usuarios.id
         LEFT OUTER JOIN citas_servicios ON citas_servicios.citaID = citas.id
-        LEFT OUTER JOIN servicios ON servicios.id = citas_servicios.servicioID";
+        LEFT OUTER JOIN servicios ON servicios.id = citas_servicios.servicioID
+        WHERE fecha = '$fecha'";
 
 
         $citas = AdminCita::SQL($sql);
@@ -30,7 +34,8 @@ $sql = "SELECT citas.id, citas.hora, CONCAT(usuarios.nombre, ' ', usuarios.apell
 
 $router->render('admin/index',[
 'nombre' => $_SESSION['nombre'],
-'citas' => $citas
+'citas' => $citas,
+'fecha' => $fecha
 
 ]);
 
