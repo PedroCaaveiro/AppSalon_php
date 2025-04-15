@@ -1,9 +1,10 @@
 <div class="barra">
-    <p>Bievenido: <?php echo $nombre ?? ''; ?> </p>
+    <p>Bienvenido: <?php echo $nombre ?? ''; ?> </p>
     <a  class ='boton' href="/logout">Finalizar Sesión</a>
 </div>
 
-<?php if(isset($_SESSION['admin'])) { ?>
+<?php if($_SESSION['admin'] === true) { ?>
+
 
 <div class="barra-servicios">
     <a href="/admin" class="boton">Ver Citas</a>
