@@ -14,6 +14,13 @@ include_once __DIR__ . '/../templates/barra.php';
     </form>
 </div>
 
+<?php
+
+    if (count($citas) === 0) {
+        echo "<h2> No hay Citas en esta fecha</h2>";
+    }
+
+?>
 <div id="citas-admin">
     <ul class="citas">
     <?php
@@ -49,6 +56,11 @@ include_once __DIR__ . '/../templates/barra.php';
             ?>
             <p class="total">Total: <span><?php echo $total." "; ?></span>€</p>
             </li>
+
+            <form action="/api/eliminar" method="POST">
+            <input type="hidden" name="id" value="<?php echo $cita->id; ?>">
+            <input type="submit" class="boton-eliminar" value="Eliminar">
+            </form>
             <?php
         }
     }

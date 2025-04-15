@@ -34,12 +34,16 @@ class loginController
                     $_SESSION['email'] = $usuario->email;
                     $_SESSION['login'] = true;
 
-                    if ($usuario->admin === '1') {
+                    $_SESSION['admin'] = $usuario->admin === '1'; // Guardar como true si es admin
+
+              
+                   
+                    // Redirigir según si es admin o cliente
+                    if ($_SESSION['admin']) {
                         header('Location: /admin');
-                        // echo ' es admin';
+                        exit;
                     } else {
                         header('Location: /cita');
-                        // echo 'es cliente';
                     }
                 } else {
                     Usuario::setAlerta('error', 'Usuario no encontrado');

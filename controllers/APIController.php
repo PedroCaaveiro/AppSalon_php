@@ -2,9 +2,11 @@
 
 namespace Controllers;
 
+use Model\ActiveRecord;
 use Model\Cita;
 use Model\CitaServicio;
 use Model\Servicio;
+
 
 class APIController
 {
@@ -49,4 +51,23 @@ class APIController
         echo json_encode(['resultado' => $resultado]);
     }
 
+public static function eliminar(){
+
+  if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $id = $_POST['id'];
+   
+    global $db;
+
+   $consulta = "DELETE FROM citas_servicios WHERE citaID = {$db->escape_string($id)}";
+    $db->query($consulta);
+
+    $cita = Cita::find($id);
+    $cita->eliminar();
+    header('Location:'. $_SERVER['HTTP_REFERER']);
+
+  }
 }
+
+
+}
+
