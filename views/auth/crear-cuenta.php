@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Crear Cuenta</title>
 </head>
 <body>
     <h1 class="nombre-pagina">Crear Cuenta</h1>
@@ -13,7 +13,7 @@
 include_once __DIR__. "/../templates/alertas.php";
 
 ?>
-    <form class="formulario" method="POST" action="/crear-cuenta">
+    <form class="formulario" method="POST" action="<?php echo BASE_URL?>/crear-cuenta">
 
     <div class="campo">
         <label for="nombre">Nombre</label>
@@ -43,8 +43,9 @@ include_once __DIR__. "/../templates/alertas.php";
 
     </form>
     <div class="acciones">
-    <a href="/">Iniciar Sesión</a>
-    <a href="/olvide">¿Olvidaste tu Password?</a>
+    <a href="<?php echo BASE_URL; ?>/">Iniciar Sesión</a>
+    <a href="<?php echo BASE_URL; ?>/olvide">¿Olvidaste tu Password?</a>
+
 </div>
 </body>
 </html>

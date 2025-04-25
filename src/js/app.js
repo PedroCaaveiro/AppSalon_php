@@ -85,7 +85,8 @@ function cambiarPaso(direccion) {
 async function consultarAPI() {
 
     try {
-        const url = 'http://127.0.0.1:3000/api/servicios';
+        
+        const url = `${BASE_URL_JS}/api/servicios`;
         const resultado = await fetch(url);
         const servicios = await resultado.json();
         //console.log(servicios);
@@ -355,7 +356,7 @@ async function reservaCita() {
 
     try {
 
-        const url = 'http://127.0.0.1:3000/api/citas';
+        const url = `${BASE_URL_JS}/api/citas`; 
 
         const respuesta = await fetch(url, {
             method: 'POST',

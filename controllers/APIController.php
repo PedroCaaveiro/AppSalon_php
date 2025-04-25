@@ -63,7 +63,8 @@ public static function eliminar(){
 
     $cita = Cita::find($id);
     $cita->eliminar();
-    header('Location:'. $_SERVER['HTTP_REFERER']);
+    header('Location: ' . BASE_URL . $_SERVER['HTTP_REFERER']);
+
 
   }
 }

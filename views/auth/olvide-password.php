@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Recuperar Password</title>
 </head>
 <body>
     <h1 class="nombre-pagina">Olvide Password</h1>
@@ -13,7 +13,7 @@
 include_once __DIR__. "/../templates/alertas.php";
 
 ?>
-<form action="/olvide" method="POST" class="formulario">
+<form action="<?php echo BASE_URL?>/olvide" method="POST" class="formulario">
 
 <div class="campo">
 <label for="email">E-mail</label>
@@ -24,8 +24,8 @@ include_once __DIR__. "/../templates/alertas.php";
 
 </form>
 <div class="acciones">
-    <a href="/">Inicio Sesión</a>
-    <a href="/crear-cuenta">Crear Cuenta</a>
+<a href="<?php echo BASE_URL; ?>/">Iniciar Sesión</a>
+    <a href="<?php echo BASE_URL; ?>/crear-cuenta">Crear Cuenta</a>
 </div>
 </body>
 </html>

@@ -36,14 +36,14 @@ class loginController
 
                     $_SESSION['admin'] = $usuario->admin === '1'; // Guardar como true si es admin
 
-              
-                   
+
+
                     // Redirigir según si es admin o cliente
                     if ($_SESSION['admin']) {
-                        header('Location: /admin');
+                        header('Location: ' . BASE_URL . '/admin');
                         exit;
                     } else {
-                        header('Location: /cita');
+                        header('Location: ' . BASE_URL . '/cita');
                     }
                 } else {
                     Usuario::setAlerta('error', 'Usuario no encontrado');
@@ -67,7 +67,8 @@ class loginController
 
         $_SESSION = [];
 
-        header('Location: /');
+        header('Location: ' . BASE_URL . '/');
+
         //echo "saliendo logout";
     }
 
@@ -139,7 +140,7 @@ class loginController
                 $resultado = $usuario->guardar();
 
                 if ($resultado) {
-                    header('Location: /');
+                    header('Location: ' . BASE_URL . '/');
                     exit;
                 }
             }
@@ -188,7 +189,8 @@ class loginController
 
                     $resultado = $usuario->guardar();
                     if ($resultado) {
-                        header('Location: /mensaje');
+                        header('Location: ' . BASE_URL . '/mensaje');
+
                     }
                 }
             }
@@ -196,6 +198,7 @@ class loginController
         $router->render('auth/crear-cuenta', [
             'usuario' => $usuario,
             'alertas' => $alertas
+            
         ]);
     }
 

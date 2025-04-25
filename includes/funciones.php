@@ -25,7 +25,7 @@ return false;
 function revisarUsuarioAutenticado():void{
 
 if (!isset($_SESSION['login'])) {
-   header('Location: /');
+    header('Location: ' . BASE_URL);
 }
 
 }
@@ -35,7 +35,7 @@ if (!isset($_SESSION['login'])) {
 
         // Si no está logueado o no es admin, redirigir
     if (!isset($_SESSION['admin']) || $_SESSION['admin'] !== true) {
-        header('Location: /');
+        header('Location: ' . BASE_URL);
         exit;
     }
     }

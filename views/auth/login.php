@@ -5,7 +5,8 @@
 include_once __DIR__. "/../templates/alertas.php";
 ?>
 
-<form action="/" class="formulario" method="POST">
+<form action="<?php echo BASE_URL; ?>" class="formulario" method="POST">
+
 
 <div class="campo">
     <label for="email">Email</label>
@@ -22,6 +23,7 @@ include_once __DIR__. "/../templates/alertas.php";
 </form>
 
 <div class="acciones">
-    <a href="/crear-cuenta">Crear Cuenta</a>
-    <a href="/olvide">¿Olvidaste tu Password?</a>
+<a href="<?php echo BASE_URL; ?>/crear-cuenta">Crear Cuenta</a>
+<a href="<?php echo BASE_URL; ?>/olvide">¿Olvidaste tu Password?</a>
+
 </div>

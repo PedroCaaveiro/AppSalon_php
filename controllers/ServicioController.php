@@ -35,7 +35,8 @@ isAdmin();
 
             if (empty($alertas)) {
             $servicio->guardar();
-            header('Location: /servicios');
+            header('Location: ' . BASE_URL . '/servicios');
+
             }
         }
 
@@ -63,7 +64,8 @@ isAdmin();
 
             if (empty($alertas)) {
                 $servicio->guardar();
-                header('location: /servicios');
+                header('Location: ' . BASE_URL . '/servicios');
+
             }
         }
 
@@ -102,7 +104,7 @@ isAdmin();
             }
     
             // Redirigir 
-            header('Location: /servicios');
+            header('Location: ' . BASE_URL . '/servicios');
             exit;
         }
     }

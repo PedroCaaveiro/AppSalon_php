@@ -57,7 +57,7 @@ include_once __DIR__ . '/../templates/barra.php';
             <p class="total">Total: <span><?php echo $total." "; ?></span>€</p>
             </li>
 
-            <form action="/api/eliminar" method="POST">
+            <form action="<?php echo BASE_URL; ?>/api/eliminar" method="POST">
             <input type="hidden" name="id" value="<?php echo $cita->id; ?>">
             <input type="submit" class="boton-eliminar" value="Eliminar">
             </form>
@@ -70,5 +70,6 @@ include_once __DIR__ . '/../templates/barra.php';
 
 <?php 
 
-$script = "<script src = 'build/js/buscador.js'></script>";
+$script = "<script src='" . BASE_URL . "/build/js/buscador.js'></script>";
+
 ?>
