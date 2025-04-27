@@ -1,6 +1,6 @@
 <div class="barra">
     <p>Bienvenido: <?php echo $nombre ?? ''; ?> </p>
-    <a  class ='boton' href="/logout">Finalizar Sesión</a>
+    <a class="boton" href="<?php echo BASE_URL . 'logout'; ?>">Finalizar Sesión</a>
 </div>
 
 <?php if($_SESSION['admin'] === true) { ?>
