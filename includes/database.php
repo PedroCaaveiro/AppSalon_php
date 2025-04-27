@@ -1,6 +1,7 @@
 <?php
 
 $db = mysqli_connect('localhost', 'root', 'root', 'appsalon_mvc');
+//$db = mysqli_connect('sql313.infinityfree.com','if0_38503538', 'root', 'appsalon_mvc');
 
 
 if (!$db) {
