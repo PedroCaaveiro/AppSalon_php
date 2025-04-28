@@ -45,7 +45,7 @@ class Email
     $contenido = '<html>';
     $contenido .= "<p><strong> Hola " . $this->nombre . "</strong> Has creado tu cuenta en App Salon, debes confirmar presionando el siguiente enlace.</p>";
     $contenido .= "<p>Presiona aquí: <a href='" . BASE_URL . "/confirmar-cuenta?token=" . $this->token . "'>Confirmar cuenta</a></p>";
-    $contenido .= "<p> Si tu no solicitaste esta cuenta puedes ignonar este mensaje</p>";
+    $contenido .= "<p> Si tu no solicitaste esta cuenta puedes ignoRar este mensaje</p>";
     $contenido .= "</html>";
     $email->Body = $contenido;
 

@@ -186,6 +186,7 @@ class loginController
 
                     $email = new Email($usuario->nombre, $usuario->email, $usuario->token);
                     $email->enviarConfirmacion();
+                    
 
                     $resultado = $usuario->guardar();
                     if ($resultado) {
