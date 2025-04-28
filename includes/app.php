@@ -8,7 +8,7 @@ $isLocalhost = ($host === 'localhost' || $host === '127.0.0.1' || strpos($host, 
 //echo 'Localhost: ' . ($isLocalhost ? 'si' : 'no') . '<br>';
 
 // Definir la URL base correctamente para el entorno local
-$base = $isLocalhost ? 'http://127.0.0.1:3000/' : 'https://midominio.com/';
+$base = $isLocalhost ? 'http://127.0.0.1:3000/' : 'http://proyectospedro.42web.io/AppSalon_php';
 define('BASE_URL', $base);
 
 
