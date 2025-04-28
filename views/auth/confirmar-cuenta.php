@@ -3,7 +3,7 @@
 
 <div class="acciones">
 
-<a href="/">Iniciar Sesión</a>
+<a href="<?php echo BASE_URL; ?>/">Iniciar Sesión</a>
 </div>
 
 

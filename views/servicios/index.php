@@ -19,7 +19,7 @@ include_once __DIR__ . '/../templates/barra.php';
 <div class="acciones">
 <a class="boton" href="<?php echo BASE_URL . 'servicios/actualizar?id=' . $servicio->id; ?>">Actualizar</a>
 
-<form action="<?php echo BASE_URL . 'servicios/eliminar'; ?>" method="POST">
+<form action="<?php echo BASE_URL . '/servicios/eliminar'; ?>" method="POST">
     <input type="hidden" name="id" value="<?php echo $servicio->id; ?>">
     <input type="submit" value="Borrar" class="boton-eliminar">
 </form>
