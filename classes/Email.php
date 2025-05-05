@@ -30,8 +30,8 @@ class Email
     $email->Host = 'smtp.gmail.com';
     $email->SMTPAuth = true;
     $email->Port = 587;
-    $email->Username = 'acaaveir@gmail.com';
-    $email->Password = 'edhlqxwitoofzdow';
+    $email->Username = '';
+    $email->Password = '';
 
 
 
@@ -68,8 +68,8 @@ class Email
     $email->Host = 'smtp.gmail.com';
     $email->SMTPAuth = true;
     $email->Port = 587;
-    $email->Username = 'acaaveir@gmail.com';
-    $email->Password = 'edhlqxwitoofzdow';
+    $email->Username = '';
+    $email->Password = '';
 
 
 

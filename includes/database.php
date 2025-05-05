@@ -1,7 +1,7 @@
 <?php
 
 $db = mysqli_connect('localhost', 'root', 'root', 'appsalon_mvc');
-//$db = mysqli_connect('sql313.infinityfree.com','if0_38503538', 'Caaveiro2025', 'if0_38503538_appsalon_mvc');
+//$db = mysqli_connect('','', '', 'if0_38503538_appsalon_mvc');
 
 
 if (!$db) {
