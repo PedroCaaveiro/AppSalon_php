@@ -11,7 +11,7 @@ $isLocalhost = ($host === 'localhost' || $host === '127.0.0.1' || strpos($host, 
 $base = $isLocalhost ? 'http://127.0.0.1:3000' : 'http://proyectospedro.42web.io/AppSalon_php/public/index.php';
 define('BASE_URL', $base);
 
-$base_static = $isLocalhost ? 'http://127.0.0.1:3000' : 'http://proyectospedro.42web.io/AppSalon_php/public';
+$base_static = $isLocalhost ? 'http://127.0.0.1:3000/' : 'http://proyectospedro.42web.io/AppSalon_php/public';
 define('BASE_URL_STATIC', $base_static);
 
 
