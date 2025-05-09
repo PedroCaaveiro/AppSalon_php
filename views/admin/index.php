@@ -1,4 +1,4 @@
-<h1 class="nombre-pagina">Vista de ADMINISTRACIÓN</h1>
+<h1 class="nombre-pagina">Vista de Administración</h1>
 
 <?php
 include_once __DIR__ . '/../templates/barra.php';
@@ -17,7 +17,7 @@ include_once __DIR__ . '/../templates/barra.php';
 <?php
 
     if (count($citas) === 0) {
-        echo "<h2> No hay Citas en esta fecha</h2>";
+        echo "<h2 class='noCitas'> No hay Citas en esta fecha</h2>";
     }
 
 ?>

@@ -9,6 +9,7 @@ margin-top:5rem;
     display: flex;
     margin-bottom: 2rem;
     align-items: center;
+  
     label{
         flex:0 0 10rem;
     }
@@ -18,11 +19,17 @@ margin-top:5rem;
         padding:15px;
         border-radius: 25px;
 
+
         &:disabled{
             background-color:v.$blanco;
             color:v.$negro;
             cursor: not-allowed;
         }
         
+    }
+}
+.noCitas{
+    @include m.telefono{
+        font-size:1.5rem;
     }
 }
