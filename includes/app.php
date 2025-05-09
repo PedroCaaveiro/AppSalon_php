@@ -8,9 +8,18 @@ $isLocalhost = ($host === 'localhost' || $host === '127.0.0.1' || strpos($host, 
 //echo 'Localhost: ' . ($isLocalhost ? 'si' : 'no') . '<br>';
 
 // Definir la URL base correctamente para el entorno local
-$base = $isLocalhost ? 'http://127.0.0.1:3000' : 'http://proyectospedro.42web.io/AppSalon_php/public';
+$base = $isLocalhost ? 'http://127.0.0.1:3000' : 'http://proyectospedro.42web.io/AppSalon_php/public/index.php';
 define('BASE_URL', $base);
 
+$base_static = $isLocalhost ? 'http://127.0.0.1:3000' : 'http://proyectospedro.42web.io/AppSalon_php/public';
+define('BASE_URL_STATIC', $base_static);
+
+
+// --- SMTP Datos del correo ---
+define('SMTP_HOST', 'smtp.gmail.com');
+define('SMTP_PORT', 587);
+define('SMTP_USER', 'acaaveir@gmail.com');
+define('SMTP_PASS', 'nnkgqvdgchpasbgf');
 
 
 require 'funciones.php';

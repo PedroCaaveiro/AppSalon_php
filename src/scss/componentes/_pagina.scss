@@ -6,9 +6,17 @@
 
     @include m.telefono{
         display: flex;
-       
+       justify-content: space-between;
+       .boton{
+        width: 130px;
+        font-size: 1.3rem;
         
-        justify-content: space-between;
+       
+
+
+       }
+
+       
     }
     
     

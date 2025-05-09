@@ -18,6 +18,9 @@ body {
         background-size: cover;
         background-position: center center;
 
+        @include m.telefono {
+            height: auto;
+        }
         @include m.tablet {
             height: auto;
         }
@@ -55,9 +58,15 @@ body {
 text-align: center;
 margin: 5rem 0;
 font-weight: bold;
+@include m.telefono{
+    font-size: 2.5rem;
+}
 }
 .descripcion-pagina{
     text-align: center;
+    @include m.telefono{
+font-size: 1.6rem;
+    }
 }
 
 .barra-servicios{

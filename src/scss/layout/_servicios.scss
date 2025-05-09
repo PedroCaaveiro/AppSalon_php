@@ -5,29 +5,40 @@
     display: grid;
     gap: 1rem;
 
+    @include m.telefono {
+
+        justify-content: center;
+
+    }
+
     @include m.tablet {
         @include m.grid(2, 2rem);
     }
 
-    
+
     .servicio {
+
+
         background-color: v.$blanco;
-        padding:1rem;
+        padding: 1rem;
         border-radius: 1rem;
         transition-property: transform;
         transition-duration: 300ms;
         text-align: center;
 
-        &.seleccionado{
+
+        &.seleccionado {
 
             background-color: v.$azul;
-            p{
-                color:v.$blanco;
+
+            p {
+                color: v.$blanco;
             }
         }
+
         &:hover {
             transform: scale(1.1);
-            
+
 
         }
 
