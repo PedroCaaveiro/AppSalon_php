@@ -4,6 +4,7 @@
 .boton{
   @include m.boton(v.$azul,v.$blanco);
   border-radius: 25px;
+  
   &:hover{
     background-color: black;
   }

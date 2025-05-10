@@ -1,11 +1,12 @@
 @use 'base/variables' as v;
 @use 'base/mixins' as m;
 
-body {
-  overflow-x: hidden;
-  max-width: 100%;
-}
+
 .contenedor-app {
+    display: block; 
+  width: 100%;
+ 
+
     @include m.tablet {
         display: grid;
         grid-template-columns: repeat(2, 1fr);
@@ -18,21 +19,19 @@ body {
         background-size: cover;
         background-position: center center;
 
-        @include m.telefono {
-            height: auto;
-        }
+        
+        
         @include m.tablet {
             height: auto;
         }
+       
     }
 
     .app {
         width: 95%;
         margin: 0 auto;
         padding: 3rem 0;
-        @include m.tablet{
-            
-        }
+        
     }
 }
 
@@ -65,7 +64,10 @@ font-weight: bold;
 .descripcion-pagina{
     text-align: center;
     @include m.telefono{
-font-size: 1.6rem;
+font-size: 1.4rem;
+    }
+       @include m.tablet{
+font-size:1.8rem;
     }
 }
 

@@ -1,5 +1,5 @@
-<h1 class="nombre-pagina">Login</h1>
-<p class="descripcion-pagina">Iniciar sesion</p>
+<h1 class="nombre-pagina">BarberApp</h1>
+<p class="descripcion-pagina">Login</p>
 
 <?php
 include_once __DIR__. "/../templates/alertas.php";
@@ -18,7 +18,7 @@ include_once __DIR__. "/../templates/alertas.php";
     <input type="password" id="password" placeholder="Tu Password" name="password">
 </div>
 
-<input type="submit" class="boton" value="Iniciar Sesión">
+<input type="submit" class="boton" value="Login">
 
 </form>
 

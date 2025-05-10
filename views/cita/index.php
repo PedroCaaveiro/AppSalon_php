@@ -59,7 +59,8 @@ include_once __DIR__. '/../templates/barra.php';
 
 $script = "
 <script src='https://cdn.jsdelivr.net/npm/sweetalert2@11'></script>
-<script src='" . BASE_URL . "/build/js/app.js'></script>";
+<script src='" . BASE_URL_STATIC . "/build/js/app.js'></script>";
+
 
 ?>
 <script>
