@@ -4,6 +4,10 @@
 .formulario{
 width: 100%;
 margin-top:5rem;
+
+
+
+
 }
 .campo{
     display: flex;
@@ -18,6 +22,11 @@ margin-top:5rem;
         border: none;
         padding:15px;
         border-radius: 25px;
+        @include m.telefono{
+
+            width:40%;
+            
+}
 
 
         &:disabled{

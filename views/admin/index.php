@@ -70,6 +70,6 @@ include_once __DIR__ . '/../templates/barra.php';
 
 <?php 
 
-$script = "<script src='" . BASE_URL . "/build/js/buscador.js'></script>";
+$script = "<script src='" . BASE_URL_STATIC . "/build/js/buscador.js'></script>";
 
 ?>
