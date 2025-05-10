@@ -15,9 +15,9 @@ if ($isLocalhost) {
     $basePath = '/AppSalon_php/public';
 } else {
      if ($isHttps) {
-        $base = 'https://proyectospedro.42web.io/AppSalon_php/public';  // Cambiado a https
+        $base = 'https://proyectospedro.42web.io/AppSalon_php/public/index.php';  // Cambiado a https
     } else {
-        $base = 'https://proyectospedro.42web.io/AppSalon_php/public';  // Si no es HTTPS, usa HTTP
+        $base = 'https://proyectospedro.42web.io/AppSalon_php/public/index.php';  // Si no es HTTPS, usa HTTP
     }
 
     $basePath = '/AppSalon_php/public';
