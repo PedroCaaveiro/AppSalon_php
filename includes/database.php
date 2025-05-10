@@ -1,5 +1,6 @@
 <?php
 
+require_once 'app.php';
 //$db = mysqli_connect('localhost', 'root', 'root', 'appsalon_mvc');
 $db_produccion = mysqli_connect('DB_HOST', 'DB_USER', 'DB_PASS', 'DB_NAME');
 
