@@ -14,8 +14,9 @@
         
        }
        
-
-       
+    }
+    @include m.tablet{
+        display: flex;
     }
     
     
