@@ -7,6 +7,7 @@ use PHPMailer\PHPMailer\Exception;
 
 require_once __DIR__ . '/../includes/app.php';
 
+
 class Email
 {
     public $email;
@@ -72,10 +73,12 @@ $mail->Debugoutput = 'html';
             $mail->isSMTP();
             $mail->Host = 'smtp.gmail.com';
             $mail->SMTPAuth = true;
-            $mail->Username = SMTP_USER;
-            $mail->Password = SMTP_PASS; 
+            $mail->Username = \SMTP_USER;
+            $mail->Password = \SMTP_PASS; 
+            $mail->Port     = \SMTP_PORT;
+
             $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
-            $mail->Port = SMTP_PORT;
+           
 
             $mail->setFrom('acaaveir@gmail.com', 'App Salon');
             $mail->addAddress($this->email);
