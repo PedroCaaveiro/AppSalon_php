@@ -180,15 +180,25 @@ class loginController
 
                     // crear token unico
 
-                    $usuario->crearToken();
+                 //  $usuario->crearToken();
 
+                 // cambios
+                  $datosUsuario = [
+                    'nombre' => $usuario->nombre,
+                    'email' => $usuario->email,
+                    'password' => $usuario->password
+                ];
+                $token = base64_encode(json_encode($datosUsuario));//cambios
+                    $usuario->token = $token;
                     // enviar un email
 
                     $email = new Email($usuario->email, $usuario->nombre, $usuario->token);
                     $email->enviarConfirmacion();
                     
 
-                    $resultado = $usuario->guardar();
+                 //   $resultado = $usuario->guardar();
+
+
                     if ($resultado) {
                         header('Location: ' . BASE_URL . '/mensaje');
 
@@ -214,8 +224,28 @@ class loginController
         $alertas = [];
 
         $token = s($_GET['token']);
-        //var_dump($token);
+       
+         $datos = json_decode(base64_decode($token), true);//cambios
 
+         if (!$datos || empty($datos['email'])) {
+        Usuario::setAlerta('error', 'Token no válido');
+    } else {
+        // Comprobar si ya existe
+        $usuarioExistente = Usuario::where('email', $datos['email']);
+        if ($usuarioExistente) {
+            Usuario::setAlerta('error', 'Este usuario ya fue confirmado previamente');
+        } else {
+            // Crear y guardar el usuario ahora
+            $usuario = new Usuario($datos);
+            $usuario->confirmado = '1';
+            $usuario->token = null; // Ya no hace falta token en la BBDD, porque no existía antes
+            $usuario->guardar();
+
+            Usuario::setAlerta('exito', 'Cuenta comprobada y registrada correctamente');
+        }
+    }
+
+/*
         $usuario = Usuario::where('token', $token);
 
         if (empty($usuario)) {
@@ -226,6 +256,7 @@ class loginController
             $usuario->guardar();
             Usuario::setAlerta('exito', 'Cuenta comprobada Correctamente');
         }
+            */
         $alertas = Usuario::getAlertas();
 
         $router->render('auth/confirmar-cuenta', [
